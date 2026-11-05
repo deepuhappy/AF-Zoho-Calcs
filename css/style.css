@@ -1,0 +1,211 @@
+/* .customBody{
+    background-color: rgb(240 241 247);
+  } */
+.dashed-underline {
+    text-decoration: underline;
+    text-decoration-color: rgb(107, 107, 107);
+    text-decoration-thickness: 3px;
+    /* text-decoration:wavy; */
+    /* text-decoration-style: dashed; */
+  }
+
+  .custLabel{
+    font-size:x-small;
+  }
+  input {
+    font-size: x-small !important;
+    padding: 3px 3px 3px 3px !important;
+  }
+  select{
+    font-size: x-small !important;
+    padding: 3px 3px 3px 3px !important;
+  }
+  button{
+    font-size:x-small !important;
+    padding: 5px !important;
+  }
+  .spinner {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    height: 2em;
+    width: 2em;
+    overflow: visible;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+ 
+/* Ensure the spinner is centered in the page */
+.spinner:before {
+    content: '';
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+ 
+/* CSS animation for the spinner */
+.spinner:after {
+    content: '';
+    display: block;
+    font-size: 40px;
+    width: 1em;
+    height: 1em;
+    margin-top: -0.5em;
+    margin-left: -0.5em;
+    border-radius: 0.5em;
+    border: 0.2em solid rgba(0, 0, 0, 0.3);
+    border-top-color: rgba(0, 0, 0, 0.8);
+    animation: spinner 0.6s linear infinite;
+}
+ 
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+.card {
+    /* height: 500px; Fixed height for the card */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card-body {
+    flex: 1; /* Ensures that the card body takes up the available space in the card */
+    /* overflow-y: auto; Adds vertical scrolling if content exceeds the height */
+  }
+
+  /* Apply thin scrollbar globally */
+::-webkit-scrollbar {
+    width: 1px;  /* Width of the vertical scrollbar */
+    height: 1px; /* Height of the horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Optional: Background color of the track */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888; /* Optional: Color of the scrollbar thumb */
+    border-radius: 10px;    /* Optional: Rounded corners for the thumb */
+    border: 1px solid #555; /* Optional: Border for contrast */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Optional: Color when hovered */
+}
+.error-border {
+    border: 2px solid red;
+}
+/* table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+ } */
+ .table-header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    /* background-color: #ffffff;  */
+    transition: background-color 0.3s ease;
+}
+
+.scrolling-header {
+    background-color: #007bff;
+    /* color: #ffffff; */
+}
+header{
+    padding: 0px 0px 0px 25px;
+}
+
+  
+
+
+/* Popup */
+
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left:50%;
+    width: max-content;
+    /* height: 10%; */
+    transform: translate(-50%, -50%);
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: 1000;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.3s ease-in-out;
+    width: 80%; /* Adjusts for smaller screens */
+    max-width: 400px; /* Limits the size on larger screens */
+}
+
+.popup-content i {
+    font-size: 30px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.popup-content p {
+    font-size: small;
+    margin: 10px 0;
+}
+
+.popup-content button {
+    padding: 10px 20px;
+    font-size: small;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+.popup-content button:hover {
+    background-color: #0056b3;
+}
+
+.popup-content i.success {
+    color: green;
+}
+
+.popup-content i.failure {
+    color: red;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
