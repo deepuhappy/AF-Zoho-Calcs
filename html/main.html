@@ -1,0 +1,313 @@
+<html>
+	<head>
+	  <link rel="stylesheet" href="../css/style.css">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <script src="../js/lib/ZohoEmbededAppSDK.min.js"></script>
+	  <!-- <script src="https://live.zwidgets.com/js-sdk/1.2/ZohoEmbededAppSDK.min.js"></script> -->
+	  <script src="../js/custom.js"></script>
+	  <script src="../js/jquery-min.js"></script>
+	  <script src="../js/custom.js"></script>
+	  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+	</head>
+	<body>
+		<div id="popup" class="popup" style="display: none;">
+			<div class="popup-content">
+				<i id="popup-icon" class=""></i>
+				<p id="popup-message"></p>
+				<button onclick="closePopup()">Close</button>
+			</div>
+		</div>
+		<input type="hidden" id="calculatorName">
+		<input type="hidden" id="calculatorType">
+		<div id="entireInputData" hidden><table style="width: 100%; border-collapse: collapse; margin: 20px 0;"><thead><tr><th colspan="2" style="background-color: #0dcaf0; text-align: center; font-weight: bold; padding: 15px 0;">Variables</th></tr></thead><tbody id="inputDataTable"></tbody></table></div>
+		<div class="spinner" id="spinner"></div>
+		<!-- <div class="container-fluid customBody" > -->
+			<!-- <header>
+				<img src="logoAFS.png" class="mt-3" alt="" srcset="">
+			</header> -->
+			<div class="container  mt-5" style="min-width: 50%; max-width:50%; background-color: rgb(240 241 247); border-radius: 6px;  padding: 10px 10px 10px 20px; height:min-content ; overflow: auto;">
+
+			<h6 class=" mt-3 mb-3" ><span class="">Basic</span> Information</h6>
+			<div class="row mb-1 g-0">
+			  <div class="col-sm-5">
+				<label for="" class="custLabel">Send Simulation</label>
+			  </div>
+			  <div class="col-sm-5">
+				<select class="form-select form-select-sm custInput" id="" onchange="ChangeSImulation(this)">
+				  <option value="">--Select--</option>
+				  <option value="Yes">Yes</option>
+				  <option value="No" selected>No</option>
+				</select>
+			  </div>
+			</div>
+			<div id="SendSimulationUI" style="display: none;">
+			<div class="row mb-1 g-0">
+			  <div class="col-sm-5">
+				<label for="" class="custLabel">Lead ID</label>
+			  </div>
+			  <div class="col-sm-5">
+				<input type="text" class="form-control form-control-sm custInput" id="" placeholder="Lead ID">
+			  </div>
+			</div>
+			<div class="row mb-1 g-0">
+			  <div class="col-sm-5">
+				<label for="" class="custLabel">Lead Source</label>
+			  </div>
+			  <div class="col-sm-5">
+				<select class="form-select form-select-sm custInput" id="">
+				  <option value="">--Select--</option>
+				  <option value="WFM Lead">WFM Lead</option>
+				  <option value="AF Website">AF Website</option>
+				  <option value="AuGsight Website">AuGsight Website</option>
+				  <option value="AF Sales">AF Sales</option>
+				</select>
+			  </div>
+			</div>
+			<div class="row mb-1 g-0">
+			  <div class="col-sm-5">
+				<label for="" class="custLabel">Agency Name</label>
+			  </div>
+			  <div class="col-sm-5">
+				<input type="text" class="form-control form-control-sm custInput" id="" placeholder="Agency Name">
+			  </div>
+			</div>
+			<div class="row mb-1 g-0">
+			  <div class="col-sm-5">
+				<label for="" class="custLabel">Phone</label>
+			  </div>
+			  <div class="col-sm-5">
+				<input type="text" class="form-control form-control-sm custInput" id="" placeholder="Phone">
+			  </div>
+			</div>
+			<div class="row mb-1 g-0">
+			  <div class="col-sm-5">
+				<label for="" class="custLabel">EEA National</label>
+			  </div>
+			  <div class="col-sm-5">
+				<select class="form-select form-select-sm custInput" id="">
+				  <option value="">--Select--</option>
+				  <option value="Yes">Yes</option>
+				  <option value="No">No</option>
+				</select>
+			  </div>
+			</div>
+			<div class="row mb-1 g-0">
+			  <div class="col-sm-5">
+				<label for="" class="custLabel">Full Name</label>
+			  </div>
+			  <div class="col-sm-5">
+				<input type="text" class="form-control form-control-sm custInput" id="fullName" placeholder="Full Name">
+			  </div>
+			</div>
+			<div class="row mb-1 g-0">
+			  <div class="col-sm-5">
+				<label for="" class="custLabel">Email</label>
+			  </div>
+			  <div class="col-sm-5">
+				<input type="email" class="form-control form-control-sm custInput" id="" placeholder="Email">
+			  </div>
+			</div>
+		</div>
+			<div class="row mb-1 g-0" id="">
+				<div class="col-sm-5">
+				  <label for="" class="custLabel">Tax Year</label>
+				</div>
+				<div class="col-sm-5">
+				  <select class="form-select form-select-sm custInput onchangeEvent1" id="calculatorTaxYear" onchange="resetCalculator()">
+				  </select>
+				</div>
+			  </div>
+			<div class="row mb-1 g-0">
+			  <div class="col-sm-5">
+				<label for="" class="custLabel">Work Country</label>
+			  </div>
+			  <div class="col-sm-5">
+				<select class="form-select form-select-sm custInput onchangeEvent1" onchange="countryBasedAction(this)" id="countryData">
+				 
+				  </select>            
+				<p class="fw-light" style="font-size: x-small;">If you want to change the Work Country, please change on the previous stage.</p>
+			  </div>
+			</div>
+			<div class="row mb-1 g-0" id="dicCalculatorType" style="display: none;">
+				<div class="col-sm-5">
+				  <label for="" class="custLabel">Type of Calculator</label>
+				</div>
+				<div class="col-sm-5">
+				  <select class="form-select form-select-sm custInput onchangeEvent1 dynamicInputForQuestionStyle " id="typeOfCalculator" onchange="typOFcalculatorSelect(this)">
+				  </select>
+				</div>
+			  </div>
+			<div class="Question_Infrmation" style="display: none;">
+				<div id="questionInformation">
+
+				</div>
+				<div class="row mb-1 g-0">
+					<div class="col-md-12">
+					  <!-- <div class="form-check"> -->
+						<button type="button" class="btn btn-primary" id="GotoNext" onclick="matchTheDetails(this)">Show Calculator</button>
+						<!-- <input class="form-check-input" type="checkbox" value="" id="GotoNext" >
+						<label class="form-check-label" for="GotoNext">
+						  Go to Next
+						</label> -->
+					  <!-- </div>   -->
+					</div>
+				  </div>
+			</div>
+			
+			<div class="Contact_Infrmation" style="display: none;">
+			<!-- <div class="container-fluid mt-5" style="max-width:95%; background-color: rgb(240 241 247); border-radius: 6px;  padding: 10px 10px 10px 20px; height:80vh ; overflow: auto;"> -->
+				<h6 class=" mb-3" i><span id="dynamicName"></span> Information</h6>		
+				<div id="contactInformation">
+	
+				</div>
+			  <div class="row mb-1 g-0" hidden>
+				<div class="col-md-12">
+				  <div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="iWantSee">
+					<label class="form-check-label" for="iWantSee">
+					  I want to see my Available Options
+					</label>
+				  </div>  
+				</div>
+			  </div>
+			  		 <div id="payeLimitMessage" style="display: none; text-align: center; color: red; font-weight: bold;">
+    <p>The PAYE threshold for this solution has been exceeded. Please refer to the alternative rate table or select another compliant solution</p>
+</div>
+			  <div class="row mb-1 g-0">
+				<div class="col-md-12">
+					<button type="button" class="btn btn-primary" id="calcAvailable" onclick="calculateProcess(this)">Calculate</button>
+				</div>
+			  </div>
+			 
+
+		  </div>
+		   <div id="expatRegimeMessage" style="display:none; font-weight:bold; padding:8px; margin-bottom:10px; text-align:center;"></div>
+		  <!-- </div> -->
+			<!-- <div id="resultTable" style="display: none;">
+		  <div class="container-fluid mt-5" style="max-width:95%;">
+			<div class="row g-2" >
+				<div class="col-sm-5 mt-3" style="background-color: rgb(240 241 247); border-radius: 6px;  padding: 10px 10px 10px 20px; height:80vh ; overflow: auto;">
+					<canvas id="myChart"></canvas>
+				</div>
+				<div class="col-sm-9 mt-3" style="background-color: rgb(240 241 247); border-radius: 6px;  padding: 10px 10px 10px 20px; height:80vh ; overflow: auto;">
+					<div id="tables-container" class=""></div>
+				</div>
+			  </div>
+			</div>
+		  </div> -->
+		
+			<!-- </div> -->
+			<div id="resultTable" class="mt-3" style="display: none;">
+				<!-- <div class="container mt-3" > -->
+					<div class="row mb-3">
+					  <!-- <div class="col-sm-5 mb-3 mb-sm-0">
+						<div class="card"> 
+						  <div class="card-body" style="height: 100%; overflow: auto;">
+							<canvas id="myChart"></canvas>
+						  </div>
+						</div>
+					  </div> -->
+					  <div class="col-sm-12">
+						<div class="card"> 
+						  <div class="card-body" >
+							<div id="tables-container" style="overflow: none;"></div>
+						  </div>
+						</div>
+					  </div>
+					  
+					</div>
+					<div class="row mb-1 g-0">
+						<div class="col-md-12">
+							<button type="button" class="btn btn-primary" id="calcAvailable" onclick="workDrive()">Download</button>
+						</div>
+					  </div>
+				  <!-- </div> -->
+			  </div>
+			  </div>
+			
+		<script type="text/javascript">
+			$(document).ready(function(){
+				initializeWidget();
+				
+			})
+			
+		</script>
+		<script>
+// 			  const inputs = document.querySelectorAll('.onchangeEvent1');
+
+// // Add an event listener to each input
+// 				inputs.forEach(input => {
+// 				input.addEventListener('change', () => {
+// 					document.querySelector(".Contact_Infrmation").style.display = "none"; 
+//                 document.querySelector(".Question_Infrmation").style.display = "none"; 
+//                 document.getElementById("resultTable").style.display="none" ;
+//                 document.getElementById("dicCalculatorType").style.display="none" 
+// 				});
+// 				});
+// 				const inputs2 = document.querySelectorAll('.onchangeEvent2');
+
+// // Add an event listener to each input
+// 				inputs2.forEach(input => {
+// 				input.addEventListener('change', () => {
+// 					document.querySelector(".Contact_Infrmation").style.display = "none"; 
+//                 document.querySelector(".Question_Infrmation").style.display = "none"; 
+//                 document.getElementById("resultTable").style.display="none" ;
+//                 document.getElementById("dicCalculatorType").style.display="none" 
+// 				});
+// 				});
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		   <!-- <script src="https://cdn.jsdelivr.net/npm/hot-formula-parser@4.0.0/dist/formula-parser.min.js"></script> -->
+			<script src="../formula-parser.min.js"></script>
+		   <script>
+		
+		   </script>
+		<script src="../js/countryBased.js"></script>
+		<script src="../js/custom.js"></script>
+		<script src="../js/converToStructure.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<script>
+	function ChangeSImulation(Option){
+		var selected = Option.value;
+		if (selected=="Yes") {
+			document.getElementById("SendSimulationUI").style.display="block";
+		} else {
+			document.getElementById("SendSimulationUI").style.display="none";
+		}
+	}
+  </script>
+  <script>
+	function showPopup(type, message) {
+    const popup = document.getElementById("popup");
+    popup.style.display="block"
+    const icon = document.getElementById("popup-icon");
+    const text = document.getElementById("popup-message");
+
+    // Set the message
+    text.textContent = message;
+
+    // Set the icon and style based on type
+    if (type === "success") {
+        icon.className = "fas fa-check-circle success"; // Success icon
+    } else if (type === "failure") {
+        icon.className = "fas fa-times-circle failure"; // Failure icon
+    }
+
+    // Show the popup
+    popup.classList.remove("hidden");
+}
+
+function closePopup() {
+    const popup = document.getElementById("popup");
+    // popup.classList.add("hidden");
+    popup.style.display="none";
+}
+  </script>
+		</body>
+</html>
